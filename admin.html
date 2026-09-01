@@ -1,0 +1,27 @@
+<!doctype html><html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#06080b"><title>Painel | iCell Imports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link rel="stylesheet" href="admin.css"></head><body>
+<div id="toast" class="toast"></div>
+<section class="login-wrap" id="loginView">
+  <form class="login-card" id="loginForm">
+    <a class="brand" href="index.html"><span>i</span>CELL <small>IMPORTS</small></a><h1>Painel do catálogo</h1><p>Entre com o usuário administrador cadastrado no Supabase.</p>
+    <label>E-mail<input type="email" id="email" autocomplete="email" required placeholder="admin@icell.com.br"></label>
+    <label>Senha<input type="password" id="password" autocomplete="current-password" required placeholder="••••••••"></label>
+    <button type="submit">Entrar <i data-lucide="arrow-right"></i></button><a class="back" href="index.html">← Voltar ao site</a>
+  </form>
+</section>
+<section class="admin hidden" id="adminView">
+  <aside><a class="brand" href="index.html"><span>i</span>CELL <small>IMPORTS</small></a><nav><button class="active"><i data-lucide="smartphone"></i> Aparelhos</button><a href="index.html"><i data-lucide="external-link"></i> Ver site</a></nav><button class="logout" id="logoutBtn"><i data-lucide="log-out"></i> Sair</button></aside>
+  <main><header><div><span>ADMINISTRAÇÃO</span><h1>Estoque de iPhones</h1></div><button class="primary" id="newProductBtn"><i data-lucide="plus"></i> Novo aparelho</button></header>
+    <div class="stats"><div><small>Publicados</small><b id="statPublished">0</b></div><div><small>Unidades em estoque</small><b id="statStock">0</b></div><div><small>Destaques</small><b id="statFeatured">0</b></div></div>
+    <div class="table-card"><div class="table-head"><h2>Produtos</h2><input type="search" id="adminSearch" placeholder="Buscar produto..."></div><div class="table-scroll"><table><thead><tr><th>Produto</th><th>Condição</th><th>Preço</th><th>Estoque</th><th>Status</th><th></th></tr></thead><tbody id="productRows"></tbody></table></div><div id="adminEmpty" class="empty hidden">Nenhum produto cadastrado.</div></div>
+  </main>
+</section>
+<div class="modal hidden" id="productModal"><div class="modal-card"><div class="modal-head"><div><small>CATÁLOGO</small><h2 id="modalTitle">Novo aparelho</h2></div><button class="icon-btn" id="closeModal"><i data-lucide="x"></i></button></div>
+<form id="productForm"><input type="hidden" id="productId"><div class="form-grid">
+<label class="wide">Nome do produto<input id="name" required placeholder="iPhone 15 Pro Max"></label><label>Modelo<input id="model" required placeholder="15 Pro Max"></label><label>Armazenamento<input id="storage" required placeholder="256 GB"></label><label>Cor<input id="color" required placeholder="Titânio Natural"></label><label>Condição<select id="condition"><option>Novo</option><option>Seminovo</option></select></label><label>Preço (R$)<input id="price" type="number" min="0" step="0.01" required placeholder="8299"></label><label>Preço anterior (R$)<input id="oldPrice" type="number" min="0" step="0.01" placeholder="8799"></label><label>Parcelas<input id="installments" type="number" min="1" max="24" value="12"></label><label>Saúde da bateria (%)<input id="battery" type="number" min="1" max="100" placeholder="94"></label><label>Estoque<input id="stock" type="number" min="0" required value="1"></label><label>Status<select id="status"><option value="published">Publicado</option><option value="draft">Rascunho</option></select></label>
+<label class="wide">Foto do aparelho<div class="upload-row"><input id="imageFile" type="file" accept="image/*"><span>ou</span><input id="imageUrl" type="url" placeholder="https://..."></div><small>Envie a foto para o Supabase Storage ou cole uma URL pública.</small></label>
+<label class="check wide"><input type="checkbox" id="featured"><span>Marcar como destaque no catálogo</span></label>
+</div><div class="modal-actions"><button type="button" class="danger hidden" id="deleteBtn"><i data-lucide="trash-2"></i> Excluir</button><span></span><button type="button" class="secondary" id="cancelBtn">Cancelar</button><button type="submit" class="primary" id="saveBtn">Salvar aparelho</button></div></form></div></div>
+<script src="supabase-config.js"></script><script src="admin.js"></script></body></html>

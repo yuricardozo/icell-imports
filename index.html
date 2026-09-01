@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#06080b" />
+  <meta name="description" content="Catálogo online da iCell Imports em Lucas do Rio Verde. Consulte iPhones disponíveis e fale pelo WhatsApp." />
+  <title>iCell Imports | iPhones em Lucas do Rio Verde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-mark"><span>i</span>CELL</div>
+    <div class="loader-line"><span></span></div>
+  </div>
+
+  <div class="noise"></div>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="iCell Imports">
+      <span class="brand-symbol">i</span>
+      <span class="brand-word">CELL</span>
+      <small>IMPORTS</small>
+    </a>
+    <nav class="desktop-nav" aria-label="Principal">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#vantagens">Por que a iCell</a>
+      <a href="#loja">Loja</a>
+    </nav>
+    <a class="header-cta" target="_blank" rel="noopener" href="https://wa.me/5565999913864?text=Ol%C3%A1%20iCell!%20Vim%20pelo%20site%20e%20quero%20ver%20os%20iPhones%20dispon%C3%ADveis.">
+      <i data-lucide="message-circle"></i><span>WhatsApp</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span></span> iPhones disponíveis em Lucas do Rio Verde</div>
+        <h1>Seu próximo <em>iPhone</em><br>está aqui.</h1>
+        <p>Veja os aparelhos disponíveis na iCell Imports, compare modelo, armazenamento, cor e condição e chame a equipe direto no WhatsApp.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#catalogo">Ver catálogo <i data-lucide="arrow-down"></i></a>
+          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.instagram.com/icellimportslrv/">Instagram <i data-lucide="instagram"></i></a>
+        </div>
+        <div class="hero-proof">
+          <div><strong>4,9</strong><span><b>★★★★★</b> 38 avaliações</span></div>
+          <div class="divider"></div>
+          <div><strong>10+</strong><span>anos de atividade</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal delay-1" aria-label="Representação de iPhones premium">
+        <div class="glow glow-a"></div>
+        <div class="glow glow-b"></div>
+        <div class="phone phone-back">
+          <div class="camera-cluster"><span></span><span></span><span></span><b></b></div>
+          <div class="apple-mark">●</div>
+        </div>
+        <div class="phone phone-front">
+          <div class="island"></div>
+          <div class="screen-light"></div>
+          <div class="screen-copy"><small>iCell Imports</small><strong>Escolha.<br>Compare.<br>Chame.</strong></div>
+        </div>
+        <div class="float-card float-card-a"><i data-lucide="shield-check"></i><span><b>Compra segura</b><small>Atendimento local</small></span></div>
+        <div class="float-card float-card-b"><i data-lucide="smartphone"></i><span><b>Estoque atualizado</b><small>via Supabase</small></span></div>
+      </div>
+    </section>
+
+    <section class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>IPHONE</span><i>•</i><span>APPLE</span><i>•</i><span>ORIGINAIS</span><i>•</i><span>SEMINOVOS</span><i>•</i><span>ACESSÓRIOS</span><i>•</i>
+        <span>IPHONE</span><i>•</i><span>APPLE</span><i>•</i><span>ORIGINAIS</span><i>•</i><span>SEMINOVOS</span><i>•</i><span>ACESSÓRIOS</span><i>•</i>
+      </div>
+    </section>
+
+    <section class="catalog-section" id="catalogo">
+      <div class="section-head reveal">
+        <div>
+          <span class="section-kicker">CATÁLOGO AO VIVO</span>
+          <h2>Escolha o seu.</h2>
+        </div>
+        <p>Os itens abaixo vêm direto do banco de dados. Quando a loja atualiza o estoque no painel, o site muda automaticamente.</p>
+      </div>
+
+      <div class="filters reveal">
+        <label class="search-box">
+          <i data-lucide="search"></i>
+          <input id="searchInput" type="search" placeholder="Buscar iPhone, cor, armazenamento..." />
+        </label>
+        <select id="modelFilter" aria-label="Filtrar por modelo"><option value="">Todos os modelos</option></select>
+        <select id="storageFilter" aria-label="Filtrar por armazenamento"><option value="">Armazenamento</option></select>
+        <select id="conditionFilter" aria-label="Filtrar por condição">
+          <option value="">Novo + Seminovo</option>
+          <option value="Novo">Novo</option>
+          <option value="Seminovo">Seminovo</option>
+        </select>
+        <select id="sortFilter" aria-label="Ordenação">
+          <option value="featured">Destaques</option>
+          <option value="price-asc">Menor preço</option>
+          <option value="price-desc">Maior preço</option>
+          <option value="newest">Mais recentes</option>
+        </select>
+      </div>
+
+      <div class="catalog-meta"><span id="resultCount">Carregando estoque...</span><button id="clearFilters" class="text-button">Limpar filtros</button></div>
+      <div id="productsGrid" class="products-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <i data-lucide="package-search"></i>
+        <h3>Nenhum aparelho encontrado</h3>
+        <p>Tente mudar os filtros ou fale com a iCell para consultar outras opções.</p>
+      </div>
+    </section>
+
+    <section class="benefits" id="vantagens">
+      <article class="benefit reveal"><span>01</span><i data-lucide="map-pin"></i><h3>Loja local</h3><p>Atendimento em Lucas do Rio Verde, com endereço físico no Centro.</p></article>
+      <article class="benefit reveal delay-1"><span>02</span><i data-lucide="badge-check"></i><h3>Estoque transparente</h3><p>Catálogo conectado ao Supabase para exibir apenas aparelhos publicados pela loja.</p></article>
+      <article class="benefit reveal delay-2"><span>03</span><i data-lucide="message-circle-more"></i><h3>Negociação rápida</h3><p>Gostou de um aparelho? Um toque abre o WhatsApp com o produto já identificado.</p></article>
+      <article class="benefit reveal delay-3"><span>04</span><i data-lucide="sparkles"></i><h3>Experiência premium</h3><p>Navegação rápida, visual inspirado em tecnologia premium e totalmente responsivo.</p></article>
+    </section>
+
+    <section class="store-section" id="loja">
+      <div class="store-panel reveal">
+        <div class="store-copy">
+          <span class="section-kicker">ICELL IMPORTS</span>
+          <h2>Veja de perto antes de decidir.</h2>
+          <p>Rua Santa Fé, 118 – Centro<br>Lucas do Rio Verde – MT</p>
+          <div class="store-actions">
+            <a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Rua+Santa+F%C3%A9+118+Centro+Lucas+do+Rio+Verde+MT">Como chegar <i data-lucide="navigation"></i></a>
+            <a class="btn btn-ghost" href="tel:+5565999913864">(65) 99991-3864</a>
+          </div>
+        </div>
+        <div class="store-card">
+          <div class="store-logo"><span>i</span>CELL<small>IMPORTS</small></div>
+          <div class="store-rating"><b>4,9</b><span>★★★★★</span><small>38 avaliações no Google</small></div>
+          <a target="_blank" rel="noopener" href="https://www.instagram.com/icellimportslrv/"><i data-lucide="instagram"></i> @icellimportslrv</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-strip reveal">
+      <div><span>Não encontrou o que procura?</span><h2>Chama a iCell.</h2></div>
+      <a class="btn btn-light" target="_blank" rel="noopener" href="https://wa.me/5565999913864?text=Ol%C3%A1%20iCell!%20N%C3%A3o%20encontrei%20o%20modelo%20que%20procuro%20no%20cat%C3%A1logo.%20Podem%20me%20ajudar%3F">Falar no WhatsApp <i data-lucide="arrow-up-right"></i></a>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#top"><span class="brand-symbol">i</span><span class="brand-word">CELL</span><small>IMPORTS</small></a>
+    <p>Catálogo digital • Lucas do Rio Verde, MT</p>
+    <div><a href="admin.html">Painel</a><span>© <span id="year"></span> iCell Imports</span></div>
+  </footer>
+
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
