@@ -9,10 +9,10 @@ const emptyState = $('#emptyState');
 let products = [];
 
 const demoProducts = [
-  {id:'demo-1',name:'iPhone 15 Pro Max',model:'15 Pro Max',storage:'256 GB',color:'Titânio Natural',condition:'Novo',price:8299,old_price:8799,installments:12,battery_health:null,stock:2,featured:true,image_url:'',created_at:'2026-09-01'},
-  {id:'demo-2',name:'iPhone 15 Pro',model:'15 Pro',storage:'128 GB',color:'Titânio Preto',condition:'Seminovo',price:6199,old_price:null,installments:12,battery_health:94,stock:1,featured:true,image_url:'',created_at:'2026-08-31'},
-  {id:'demo-3',name:'iPhone 14 Pro Max',model:'14 Pro Max',storage:'256 GB',color:'Roxo Profundo',condition:'Seminovo',price:5599,old_price:5999,installments:12,battery_health:90,stock:2,featured:false,image_url:'',created_at:'2026-08-30'},
-  {id:'demo-4',name:'iPhone 13',model:'13',storage:'128 GB',color:'Meia-noite',condition:'Seminovo',price:3299,old_price:null,installments:10,battery_health:88,stock:3,featured:false,image_url:'',created_at:'2026-08-28'}
+  {id:'demo-1',name:'iPhone 15 Pro Max',model:'15 Pro Max',storage:'256 GB',color:'Titânio Natural',condition:'Novo',price:8299,old_price:8799,installments:12,battery_health:null,stock:2,featured:true,image_url:'https://mobileplanet.ua/uploads/product/2023-9-13/magazin-mobileplanet-apple-iphone-15-pro-max-1tb-natural-titanium-mu7j3-2853961.jpg',created_at:'2026-09-01'},
+  {id:'demo-2',name:'iPhone 15 Pro',model:'15 Pro',storage:'128 GB',color:'Titânio Preto',condition:'Seminovo',price:6199,old_price:null,installments:12,battery_health:94,stock:1,featured:true,image_url:'https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/172/17231/17231439.jpg',created_at:'2026-08-31'},
+  {id:'demo-3',name:'iPhone 14 Pro Max',model:'14 Pro Max',storage:'256 GB',color:'Roxo Profundo',condition:'Seminovo',price:5599,old_price:5999,installments:12,battery_health:90,stock:2,featured:false,image_url:'https://content1.rozetka.com.ua/goods/images/original/284924170.jpg',created_at:'2026-08-30'},
+  {id:'demo-4',name:'iPhone 13',model:'13',storage:'128 GB',color:'Meia-noite',condition:'Seminovo',price:3299,old_price:null,installments:10,battery_health:88,stock:3,featured:false,image_url:'https://content1.rozetka.com.ua/goods/images/original/221214139.jpg',created_at:'2026-08-28'}
 ];
 
 function money(v){return Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
@@ -61,7 +61,7 @@ function render(){
     const specs=[p.storage,p.color,p.battery_health?`${p.battery_health}% bateria`:null].filter(Boolean);
     const msg=encodeURIComponent(`Olá iCell! Vi o ${p.name} ${p.storage||''} ${p.color||''} no site e quero saber mais.`);
     return `<article class="product-card">
-      <div class="product-media">${p.image_url?`<img src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy">`:'<div class="product-placeholder" aria-hidden="true"></div>'}
+      <div class="product-media">${p.image_url?`<img src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling?.classList.remove('hidden')"><div class="product-placeholder hidden" aria-hidden="true"></div>`:'<div class="product-placeholder" aria-hidden="true"></div>'}
         <span class="product-badge ${p.featured?'featured':''}">${p.featured?'Destaque':esc(p.condition||'Disponível')}</span>
       </div>
       <div class="product-info">

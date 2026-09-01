@@ -125,11 +125,18 @@ to authenticated
 using (bucket_id='products' and public.is_admin());
 
 -- Dados de exemplo opcionais. Apague ou altere após configurar.
-insert into public.products (name,model,storage,color,condition,price,old_price,installments,battery_health,stock,featured,status)
+insert into public.products (name,model,storage,color,condition,price,old_price,installments,battery_health,stock,featured,status,image_url)
 select * from (values
-('iPhone 15 Pro Max','15 Pro Max','256 GB','Titânio Natural','Novo',8299.00,8799.00,12,null,2,true,'published'),
-('iPhone 15 Pro','15 Pro','128 GB','Titânio Preto','Seminovo',6199.00,null,12,94,1,true,'published'),
-('iPhone 14 Pro Max','14 Pro Max','256 GB','Roxo Profundo','Seminovo',5599.00,5999.00,12,90,2,false,'published'),
-('iPhone 13','13','128 GB','Meia-noite','Seminovo',3299.00,null,10,88,3,false,'published')
-) as v(name,model,storage,color,condition,price,old_price,installments,battery_health,stock,featured,status)
+('iPhone 15 Pro Max','15 Pro Max','256 GB','Titânio Natural','Novo',8299.00,8799.00,12,null,2,true,'published','https://mobileplanet.ua/uploads/product/2023-9-13/magazin-mobileplanet-apple-iphone-15-pro-max-1tb-natural-titanium-mu7j3-2853961.jpg'),
+('iPhone 15 Pro','15 Pro','128 GB','Titânio Preto','Seminovo',6199.00,null,12,94,1,true,'published','https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/172/17231/17231439.jpg'),
+('iPhone 14 Pro Max','14 Pro Max','256 GB','Roxo Profundo','Seminovo',5599.00,5999.00,12,90,2,false,'published','https://content1.rozetka.com.ua/goods/images/original/284924170.jpg'),
+('iPhone 13','13','128 GB','Meia-noite','Seminovo',3299.00,null,10,88,3,false,'published','https://content1.rozetka.com.ua/goods/images/original/221214139.jpg')
+) as v(name,model,storage,color,condition,price,old_price,installments,battery_health,stock,featured,status,image_url)
 where not exists (select 1 from public.products);
+
+-- Se você já executou este schema anteriormente, rode também estas linhas uma vez
+-- para preencher as imagens dos produtos de demonstração já existentes.
+update public.products set image_url='https://mobileplanet.ua/uploads/product/2023-9-13/magazin-mobileplanet-apple-iphone-15-pro-max-1tb-natural-titanium-mu7j3-2853961.jpg' where model='15 Pro Max' and (image_url is null or image_url='');
+update public.products set image_url='https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/172/17231/17231439.jpg' where model='15 Pro' and (image_url is null or image_url='');
+update public.products set image_url='https://content1.rozetka.com.ua/goods/images/original/284924170.jpg' where model='14 Pro Max' and (image_url is null or image_url='');
+update public.products set image_url='https://content1.rozetka.com.ua/goods/images/original/221214139.jpg' where model='13' and (image_url is null or image_url='');
